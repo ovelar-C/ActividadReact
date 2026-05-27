@@ -1,0 +1,52 @@
+body{
+  background-color: rgb(155, 154, 154);
+  margin: 0;
+}
+.nav{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #778386;
+  border:2px solid #555;
+  padding: 0.5rem;
+  box-shadow: 1px 1px 0px black;
+}
+
+.nav a{
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 1rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  color: black;
+
+  background-color: #dcdcdc;
+
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  border-right: 2px solid #555;
+  border-bottom: 2px solid #555;
+
+  box-shadow: 1px 1px 0px black;
+
+  cursor:pointer;
+  /*
+  text-decoration: none;
+  font-family: monospace;
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: black;
+  */
+}
+.botonesAll{
+  border-top:2px solid #DEDED6;
+  border-left:2px solid  #DEDED6;
+  border-right: 2px solid#555;
+  border-bottom: 2px solid #555;
+  cursor: pointer;
+  box-shadow: 1px 1px 0px black;
+  font-family: monospace;
+  padding: 0.6rem;
+  background-color: rgb(199, 198, 199);
+
+}
+  
