@@ -40,7 +40,7 @@
 .listadoDatos li a {
     margin: 1rem;
     text-decoration: none;
-    color: black;
+    color: white;
     padding: 0.5rem;
     border-right: 2px solid #555;
     border-bottom: 2px solid #555;
@@ -49,5 +49,6 @@
     padding-left: 2rem;
     padding-right: 2rem;
     box-shadow: 1px 1px 0px black;
+    background-color: rgb(51, 102, 160);
 
 }

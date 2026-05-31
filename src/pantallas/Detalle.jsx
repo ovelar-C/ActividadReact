@@ -1,91 +1,143 @@
-import axios from "axios";
 import { use, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Form, useNavigate, useParams } from "react-router-dom";
 import '../pantallascss/detalle.css';
+import RunGetId from "../componentes/useRunGetId";
+import Formulario from "../componentes/Formulario";
+import RunPatch from "../componentes/RunPatch";
+import RunEliminar from "../componentes/RunEliminar";
 
-export default function EditarBorrar() {
+export default function Detalle() {
     const { id } = useParams();
-    const [cargando, setCargando] = useState(true);
-    const [pelicula, setPelicula] = useState(null);
-    const [editar, setEditar] = useState(false);
-    const [formDatos, setFormDatos] = useState(null)
+    //me trae con id y rentable
+    const { pelicula, cargando } = RunGetId(id);
 
-    useEffect(() => {
-        axios.get(`http://localhost:3000/api/peliculas/${id}`)
-            .then((respuesta) => {
-                setCargando(false);
-                console.log(respuesta.data);
-                setPelicula(respuesta.data)
-            })
-            .catch((error) => {
-                console.log(error);
-                setCargando(true);
-            })
-    }, [id]);
+    //const [cargando, setCargando] = useState(true);
+    //const [pelicula, setPelicula] = useState(null);
+    const [dicotomia, setDicotomia] = useState(null);
+    //form datos ahora tiene los datos de la peli
+    const [formDatos, setFormDatos] = useState(pelicula);
+    const [mensaje, setMensaje] = useState(null);
+    const [editandoAhora, setEditandoAhora] = useState(false);
+    const [peliActual, setPeliActual] = useState(null);
 
-    function editarPeli(e){
-        e.preventDefault();
+    const navigate = useNavigate();
+
+    /*
+        obtengo de Listado el id por useParams, y se lo paso a un hook getID,
+        este hook me devuelve la peli y la muestro acá
+    */
+
+
+        //useEffect renderiza si cambia "pelicula"
+    useEffect(()=>{
+        setPeliActual(pelicula);
+    },[pelicula]);
+
+
+
+    async function editarPeli(dato) {
+
+        const idPeli = dato.id;
+        const { id, ...datoPreparado } = dato;
+
+        console.log("holaaaaaaa en EditarPeli");
+
+        const respuesta = await RunPatch(idPeli, datoPreparado);
+        if (respuesta.ok) {
+            setMensaje("Pelicula guardado con un exito del 100%");
+            setTimeout(() => {
+                setMensaje("");
+
+            }, 2000);
+            setFormDatos(respuesta.data);
+        } else {
+            setMensaje("Error al guardar los datos D:");
+            setTimeout(() => {
+                setMensaje("");
+            }, 3000);
+        }
     }
 
-    if (cargando)
-        return <h2>cargando...</h2>
+    async function eliminarfuncion(id) {
+        if (window.confirm("seguro queres elimnar?") && id) {
+            console.log("en eliminarfuncion");
+            const respuesta = await RunEliminar(id);
+            if (respuesta.ok) {
+                setFormDatos(null);
+                setPeliActual(null)
+
+                setMensaje("Pelicula eliminado con un exito del 100%");
+                setTimeout(() => {
+                    setMensaje("");
+                    navigate("/listado");
+
+                }, 2000);
+            }
+            else {
+                setMensaje("Error al eliminar pelicula:");
+                setTimeout(() => {
+                    setMensaje("");
+                    navigate("/listado");
+                }, 3000);
+            }
+        } else {
+            console.log("negativa de eliminar pelicula");
+
+        }
+    }
+
+    if (!peliActual)
+        return <h2>sin datos</h2>
+
+        /*
+    if(!peliActual)
+        return <h2>pelicula eliminada</h2>
+    */
+   
     return (
         <>
             <section className="detalle">
-                <h1>Editar y Eliminar</h1>
-                <ul>
-                    {pelicula &&
 
-                        Object.entries(pelicula).map(([key, value]) => (
+                {mensaje && (
+                    <div className="alerta">
+                        {mensaje}
+                    </div>
+                )}
+                {cargando && (
+                    <h3>cargando datos...</h3>
+                )}
+
+                <h1>Editar y Eliminar</h1>
+                <ul className="datos">
+                    {formDatos &&
+
+                        Object.entries(formDatos).map(([key, value]) => (
                             <li key={key}>
                                 {key}:
                                 {String(value)}
                             </li>
                         ))}
                 </ul>
-                <h4>• ID {pelicula.id}</h4>
-                <form onSubmit={editarPeli} className="formulario">
-                    <div className="contenedorForm">
-                        <div className="divform">
-                            <label>Titulo</label>
-                            <input type="text" value={pelicula.titulo} disabled={!editar} />
-                            <label>Fecha de Estreno</label>
-                            <input type="number" value={pelicula.fechaEstreno} disabled={!editar} />
-                            <label>Director</label>
-                            <input type="text" value={pelicula.director} disabled={!editar} />
-                            <label>Ganador del Oscar</label>
-                            <input type="checkbox" checked={pelicula.ganadorOscar} disabled={!editar}
-                                onChange={(e) => setFormDatos({
-                                    ...formDatos,
-                                    ganadorOscar: e.target.checked
-                                })}
-                            />
-                            <label>Generos</label>
-                            <input type="text" value={pelicula.generos} disabled={!editar} />
-                            <label>Costo Inicial</label>
-                            <input type="number" value={pelicula.costoInicial} disabled={!editar} />
-                        </div>
-                        <div className="divform">
-                            <label>Recaudación</label>
-                            <input type="number" value={pelicula.recaudacion} disabled={!editar} />
-                            <label>sinopsis</label>
-                            <input type="text" value={pelicula.sinopsis} disabled={!editar} />
-                            <label>Duración</label>
-                            <input type="number" value={pelicula.duracionMinutos} disabled={!editar} />
-                            <label>País de Origen</label>
-                            <input type="text" value={pelicula.paisOrigen} disabled={!editar} />
-                            <label>Idioma</label>
-                            <input type="text" value={pelicula.idiomaOriginal} disabled={!editar} />
-                            <label>Actores</label>
-                            <input type="text" value={pelicula.actores} disabled={!editar} />
-                        </div>
+                {peliActual &&
+                    <div className="datoId">
+                        <h4>• ID {peliActual.id}</h4>
                     </div>
-                    <div className="botones">
-                        <button className="botonesAll" type="button" onClick={()=>setEditar(true)}>Editar</button>
-                        <button className="botonesAll" type="button" id="eliminar">Eliminar</button>
-                        <button className="botonesAll" type="submit" id="guardar">Guardar</button>
-                    </div>
-                </form>
+                }
+                    <Formulario
+                        datoInicial={peliActual}
+                        onSubmit={editarPeli}
+                        funcionEliminar={eliminarfuncion}
+                        modo="editar"
+                        editando={editandoAhora}
+                    />
+                {/* 
+                <div className="botones">
+                    <button className="botonesAll" type="button" id="editar" onClick={()=>setEditandoAhora(true)}>Editar</button>
+                    <button className="botonesAll" type="button" id="eliminar" onClick={()=> setDicotomia("eliminar")}>Eliminar</button>
+                    <button className="botonesAll" type="submit" id="guardar">Guardar</button>
+                </div>
+                */}
+
             </section>
         </>
     )

@@ -1,10 +1,19 @@
 import { Link, useNavigate } from "react-router-dom"
 import '../pantallascss/listado.css'
 import { useEffect, useState } from "react";
-import useRunGet from "../componentes/RunGet";
+import useRunGet from "../componentes/useRunGet";
 export default function Listado() {
+
+    //const {datos, cargando, refetch} = useRunGet();
     const {datos, cargando} = useRunGet();
 
+
+    const [pelicula, setPelicula] = useState(datos);
+
+    useEffect(()=>{
+        setPelicula(datos);
+    },[datos])
+   
     return (
         <>
             <section className="listado">
@@ -16,10 +25,11 @@ export default function Listado() {
                 )}
                 {!cargando &&
                     <div className="listadoDatos">
-                        {datos.map((dato)=>(
+                        {datos?.map((dato)=>(
                             <ul key={dato.id}>
                                 <li>
-                                    <span>{dato.titulo}</span>
+                                    <span>{dato.id}</span>
+                                    <span>• {dato.titulo}</span>
                                     {
                                         <Link to={`/editar/${dato.id}`}>
                                             ver más

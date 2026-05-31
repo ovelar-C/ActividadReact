@@ -17,8 +17,8 @@ export default async function RunPost(formDatos){
             console.error("error al crear post", error);
             return{
                 ok : false ,
-                status : error.respuesta?.status,
-                data : error.respuesta?.data
+                status : error.response?.status,
+                data : error.response?.data
             }
         }
 }

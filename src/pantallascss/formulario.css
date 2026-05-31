@@ -1,0 +1,76 @@
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(199, 198, 199);
+    border-top: 3rem solid rgb(51, 102, 160);
+    border-left: 2px solid #424242;
+    border-right: 2px solid #424242;
+    border-bottom: 2px solid #424242;
+    box-shadow: 1px 1px 1px 0px black;
+
+
+    padding: 1rem;
+    margin: 0rem;
+    margin-bottom: 3rem;
+}
+.contenedorForm{
+    display: flex;
+    flex-direction: row;
+}
+.divForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem;
+    padding:1rem;
+
+    padding: 1rem;
+    background-color: rgb(199, 198, 199);
+    border-top:2px solid white;
+    border-left: 2px solid white;
+    border-right: 2px solid #424242;
+    border-bottom: 2px solid #424242;
+    box-shadow: 1px 1px 1px 0px black;
+}
+.divform input{
+    border: none;
+    border-left: 2px solid #424242;
+    border-top: 2px solid #424242;
+    box-shadow: 0px 0px 1px 0px black;
+
+    padding: 0.3rem;
+    margin: 0.3rem;
+}
+.botones{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 1rem;
+}
+h4{
+    font-family: monospace;
+    font-size: 1.5rem;
+}
+#eliminar{
+    background-color: red;
+    color: white;
+    box-shadow: none;
+}
+#guardar{
+    background-color: green;
+    color: white;
+    box-shadow: none;
+}
+#editar{
+    background-color: rgb(51, 102, 160);
+    color: white;
+    box-shadow: none;
+}

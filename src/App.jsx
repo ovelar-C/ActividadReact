@@ -4,18 +4,18 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import { Outlet, Route, Routes, Link } from 'react-router-dom'
-import FormPost from './pantallas/Home'
+import Home from './pantallas/Home'
 import Listado from './pantallas/Listado'
-import EditarBorrar from './pantallas/Detalle'
+import Detalle from './pantallas/Detalle'
 
 
 function Layout(){
   return (
     <>
     <nav className='nav'>
-      <Link to="/"  className='post'>post</Link>
-      <Link to="/listado" className='listado'>get</Link>
-      <Link to="/editar/1" className='editar'>patch and delete</Link>
+      <Link to="/"  className='post'>Agregar</Link>
+      <Link to="/listado" className='listado'>Listado</Link>
+      <Link to="/editar/1" className='editar'>Modificar</Link>
     </nav>
     <main>
       <Outlet/>
@@ -31,9 +31,9 @@ function App() {
     <>
     <Routes>
       <Route path='/' element={<Layout/>}>
-        <Route index element = {<FormPost/>}/>
+        <Route index element = {<Home/>}/>
         <Route path='listado' element = {<Listado/>}/>
-        <Route path='editar/:id' element = {<EditarBorrar/>}/> 
+        <Route path='editar/:id' element = {<Detalle/>}/> 
       </Route>
     </Routes>
 
