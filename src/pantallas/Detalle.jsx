@@ -43,6 +43,7 @@ export default function Detalle() {
             setMensaje("Pelicula guardado con un exito del 100%");
             setTimeout(() => {
                 setMensaje("");
+                navigate("/listado");
 
             }, 2000);
             setFormDatos(respuesta.data);
