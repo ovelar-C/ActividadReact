@@ -56,7 +56,7 @@ export default function Detalle() {
     }
 
     async function eliminarfuncion(id) {
-        if (window.confirm("seguro queres elimnar?") && id) {
+        if (window.confirm("¿Está usted completamente seguro de Eliminar la Siguiente Película?") && id) {
             console.log("en eliminarfuncion");
             const respuesta = await RunEliminar(id);
             if (respuesta.ok) {
