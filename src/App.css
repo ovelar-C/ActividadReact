@@ -1,17 +1,30 @@
-body{
+body {
   background-color: rgb(177, 176, 176);
   margin: 0;
 }
-.nav{
+
+.nav {
   display: flex;
   justify-content: space-evenly;
   background-color: rgb(51, 102, 160);
-  border:2px solid #555;
+  border: 2px solid #555;
   padding: 0.5rem;
   box-shadow: 1px 1px 0px black;
 }
-
-.nav a{
+.titulo {
+  font-family: monospace;
+  margin: 2rem;
+  border-bottom: 2px solid #555;
+  border-right: 2px solid #555;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  padding: 1rem;
+  box-shadow: 1px 1px 0px black;
+  background-color: rgb(199, 198, 199);
+  color: black;
+  font-size: 1rem;
+}
+.nav a {
   text-decoration: none;
   font-family: monospace;
   font-size: 1rem;
@@ -28,18 +41,12 @@ body{
 
   box-shadow: 1px 1px 0px black;
 
-  cursor:pointer;
-  /*
-  text-decoration: none;
-  font-family: monospace;
-  font-size: 1rem;
-  padding: 0.5rem;
-  color: black;
-  */
+  cursor: pointer;
 }
-.botonesAll{
-  border-top:2px solid #DEDED6;
-  border-left:2px solid  #DEDED6;
+
+.botonesAll {
+  border-top: 2px solid #DEDED6;
+  border-left: 2px solid #DEDED6;
   border-right: 2px solid#555;
   border-bottom: 2px solid #555;
   cursor: pointer;
@@ -47,26 +54,26 @@ body{
   font-family: monospace;
   padding: 0.6rem;
   background-color: rgb(199, 198, 199);
-
+  margin-left: 2rem;
+  margin-right: 1rem;
 }
-.alerta{
-    position: fixed;
-    top: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #7a7979;
-    color: white;
-    padding: 12px 18px;
-    z-index: 9999;
-    padding: 1rem;
-    font-family: monospace;
-    font-size: 1rem;
 
-    
-    border-top:2px solid white;
-    border-left: 2px solid white;
-    border-right: 2px solid #424242;
-    border-bottom: 2px solid #424242;
-    box-shadow: 1px 1px 1px 0px black;
+.alerta {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #7a7979;
+  color: white;
+  padding: 12px 18px;
+  z-index: 9999;
+  padding: 1rem;
+  font-family: monospace;
+  font-size: 1rem;
+
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  border-right: 2px solid #424242;
+  border-bottom: 2px solid #424242;
+  box-shadow: 1px 1px 1px 0px black;
 }
-  

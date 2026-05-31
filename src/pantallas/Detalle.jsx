@@ -26,14 +26,10 @@ export default function Detalle() {
         obtengo de Listado el id por useParams, y se lo paso a un hook getID,
         este hook me devuelve la peli y la muestro acá
     */
-
-
-        //useEffect renderiza si cambia "pelicula"
+    //useEffect renderiza si cambia "pelicula"
     useEffect(()=>{
         setPeliActual(pelicula);
     },[pelicula]);
-
-
 
     async function editarPeli(dato) {
 
@@ -85,10 +81,6 @@ export default function Detalle() {
 
         }
     }
-
-    if (!peliActual)
-        return <h2>sin datos</h2>
-
         /*
     if(!peliActual)
         return <h2>pelicula eliminada</h2>
@@ -107,22 +99,13 @@ export default function Detalle() {
                     <h3>cargando datos...</h3>
                 )}
 
-                <h1>Editar y Eliminar</h1>
-                <ul className="datos">
-                    {formDatos &&
+                <h1 className="titulo">Editar y Eliminar</h1>
+               
+                {peliActual ? (
 
-                        Object.entries(formDatos).map(([key, value]) => (
-                            <li key={key}>
-                                {key}:
-                                {String(value)}
-                            </li>
-                        ))}
-                </ul>
-                {peliActual &&
-                    <div className="datoId">
+                     <div className="datoId">
                         <h4>• ID {peliActual.id}</h4>
-                    </div>
-                }
+                    
                     <Formulario
                         datoInicial={peliActual}
                         onSubmit={editarPeli}
@@ -130,14 +113,11 @@ export default function Detalle() {
                         modo="editar"
                         editando={editandoAhora}
                     />
-                {/* 
-                <div className="botones">
-                    <button className="botonesAll" type="button" id="editar" onClick={()=>setEditandoAhora(true)}>Editar</button>
-                    <button className="botonesAll" type="button" id="eliminar" onClick={()=> setDicotomia("eliminar")}>Eliminar</button>
-                    <button className="botonesAll" type="submit" id="guardar">Guardar</button>
-                </div>
-                */}
-
+                    </div>
+                ):(
+                     <h3>sin datos</h3>
+                )
+                }
             </section>
         </>
     )

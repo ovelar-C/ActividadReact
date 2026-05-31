@@ -1,28 +1,11 @@
 
-.detalle{
+.detalle, .datoId{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-h1{
-    font-family: monospace;
-    margin: 2rem;
-    border-bottom: 2px solid #555;
-    border-right: 2px solid #555;
-    border-top: 2px solid white;
-    border-left: 2px solid white;
-    padding: 1rem;
-    box-shadow: 1px 1px 0px black;
-    background-color: rgb(199, 198, 199);
-    color: black;
-    font-size: 1.2rem;
-}
-.datos{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 10%;
-    margin-bottom: -1.5rem;
-    margin-top: 0rem;
+
+.datoId{
+    margin: -3rem;
 }

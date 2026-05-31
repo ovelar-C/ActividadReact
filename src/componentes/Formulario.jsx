@@ -102,10 +102,14 @@ export default function Formulario({ datoInicial, onSubmit, funcionEliminar, mod
                     </div >
 
                     {modo === "crear" ? (
-                        <button type="submit"
-                            className="botonesAll">
-                            Guardar película
-                        </button>
+                        
+                        <div className="botones">
+                            <button type="submit"
+                                className="botonesAll"
+                                id="guardar">
+                                Guardar película
+                            </button>
+                        </div>
                     ) : (
                         <div className="botones">
                             <button type="button"

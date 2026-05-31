@@ -45,7 +45,7 @@ export default function Home() {
                 </div>
             )}
             <section className="post">
-                <h1>Agregar Película</h1>
+                <h1 className="titulo">Agregar Película</h1>
 
                 {/*componente que le mandamos una funcion*/}
                 <Formulario

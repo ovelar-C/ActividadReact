@@ -8,34 +8,42 @@ import Home from './pantallas/Home'
 import Listado from './pantallas/Listado'
 import Detalle from './pantallas/Detalle'
 
+import evangelionmp3 from './assets/evangelion.mp3'
 
-function Layout(){
+
+function Layout() {
+
+
   return (
     <>
-    <nav className='nav'>
-      <Link to="/"  className='post'>Agregar</Link>
-      <Link to="/listado" className='listado'>Listado</Link>
-      <Link to="/editar/1" className='editar'>Modificar</Link>
-    </nav>
-    <main>
-      <Outlet/>
-    </main>
+      <nav className='nav'>
+        <Link to="/" className='post'>Agregar</Link>
+        <Link to="/listado" className='listado'>Listado</Link>
+        <Link to="/editar/1" className='editar'>Modificar</Link>
+      </nav>
+      <main>
+        <Outlet />
+      </main>
+
+      {/*descomentar la siguiente linea para tener de fondo una cancion */}
+      {/*
+        <audio autoPlay loop src= {evangelionmp3}/>
+      */}
     </>
   )
 }
-
 
 function App() {
 
   return (
     <>
-    <Routes>
-      <Route path='/' element={<Layout/>}>
-        <Route index element = {<Home/>}/>
-        <Route path='listado' element = {<Listado/>}/>
-        <Route path='editar/:id' element = {<Detalle/>}/> 
-      </Route>
-    </Routes>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='listado' element={<Listado />} />
+          <Route path='editar/:id' element={<Detalle />} />
+        </Route>
+      </Routes>
 
     </>
   )

@@ -3,11 +3,8 @@ import '../pantallascss/listado.css'
 import { useEffect, useState } from "react";
 import useRunGet from "../componentes/useRunGet";
 export default function Listado() {
-
     //const {datos, cargando, refetch} = useRunGet();
     const {datos, cargando} = useRunGet();
-
-
     const [pelicula, setPelicula] = useState(datos);
 
     useEffect(()=>{
@@ -17,7 +14,7 @@ export default function Listado() {
     return (
         <>
             <section className="listado">
-                <h1>Lista de Películas</h1>
+                <h1 className="titulo">Lista de Películas</h1>
                 {cargando && (
                     <div>
                         <h3>cargando datos...</h3>
