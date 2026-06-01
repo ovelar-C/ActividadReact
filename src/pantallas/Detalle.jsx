@@ -10,9 +10,6 @@ export default function Detalle() {
     const { id } = useParams();
     //me trae con id y rentable
     const { pelicula, cargando } = RunGetId(id);
-
-    //const [cargando, setCargando] = useState(true);
-    //const [pelicula, setPelicula] = useState(null);
     const [dicotomia, setDicotomia] = useState(null);
     //form datos ahora tiene los datos de la peli
     const [formDatos, setFormDatos] = useState(pelicula);
@@ -21,7 +18,6 @@ export default function Detalle() {
     const [peliActual, setPeliActual] = useState(null);
 
     const navigate = useNavigate();
-
     /*
         obtengo de Listado el id por useParams, y se lo paso a un hook getID,
         este hook me devuelve la peli y la muestro acá
@@ -82,11 +78,6 @@ export default function Detalle() {
 
         }
     }
-        /*
-    if(!peliActual)
-        return <h2>pelicula eliminada</h2>
-    */
-   
     return (
         <>
             <section className="detalle">

@@ -1,7 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 import { Outlet, Route, Routes, Link } from 'react-router-dom'
 import Home from './pantallas/Home'
@@ -9,6 +6,7 @@ import Listado from './pantallas/Listado'
 import Detalle from './pantallas/Detalle'
 
 import evangelionmp3 from './assets/evangelion.mp3'
+import NavBarra from './componentes/NavBarra'
 
 
 function Layout() {
@@ -16,16 +14,11 @@ function Layout() {
 
   return (
     <>
-      <nav className='nav'>
-        <Link to="/" className='post'>Agregar</Link>
-        <Link to="/listado" className='listado'>Listado</Link>
-        <Link to="/editar/1" className='editar'>Modificar</Link>
-      </nav>
+      <NavBarra/>
       <main>
         <Outlet />
       </main>
 
-      {/*descomentar la siguiente linea para tener de fondo una cancion */}
       {/*
         <audio autoPlay loop src= {evangelionmp3}/>
       */}
