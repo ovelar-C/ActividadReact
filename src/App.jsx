@@ -8,10 +8,7 @@ import Detalle from './pantallas/Detalle'
 import evangelionmp3 from './assets/evangelion.mp3'
 import NavBarra from './componentes/NavBarra'
 
-
 function Layout() {
-
-
   return (
     <>
       <NavBarra/>
@@ -27,7 +24,6 @@ function Layout() {
 }
 
 function App() {
-
   return (
     <>
       <Routes>

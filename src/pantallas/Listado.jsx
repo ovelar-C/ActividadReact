@@ -3,7 +3,6 @@ import '../pantallascss/listado.css'
 import { useEffect, useState } from "react";
 import useRunGet from "../componentes/useRunGet";
 export default function Listado() {
-    //const {datos, cargando, refetch} = useRunGet();
     const {datos, cargando} = useRunGet();
     const [pelicula, setPelicula] = useState(datos);
 

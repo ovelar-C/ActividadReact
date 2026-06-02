@@ -10,7 +10,6 @@ export default function Detalle() {
     const { id } = useParams();
     //me trae con id y rentable
     const { pelicula, cargando } = RunGetId(id);
-    const [dicotomia, setDicotomia] = useState(null);
     //form datos ahora tiene los datos de la peli
     const [formDatos, setFormDatos] = useState(pelicula);
     const [mensaje, setMensaje] = useState(null);
@@ -75,7 +74,6 @@ export default function Detalle() {
             }
         } else {
             console.log("negativa de eliminar pelicula");
-
         }
     }
     return (
@@ -108,8 +106,7 @@ export default function Detalle() {
                     </div>
                 ):(
                      <h3>sin datos</h3>
-                )
-                }
+                )}
             </section>
         </>
     )
