@@ -1,11 +1,16 @@
 
-.detalle, .datoId{
+.detalle, .datos{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-
-.datoId{
-    margin: -3rem;
+.fueraForm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+h4{
+    margin: 0rem;
 }

@@ -1,17 +1,21 @@
-import { use, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { Form, useNavigate, useParams } from "react-router-dom";
 import '../pantallascss/detalle.css';
 import RunGetId from "../componentes/useRunGetId";
 import Formulario from "../componentes/Formulario";
 import RunPatch from "../componentes/RunPatch";
 import RunEliminar from "../componentes/RunEliminar";
+import { DatosContext } from "../contexto/FavoritosContext";
 
 export default function Detalle() {
+    const { favoritos, setFavorito, agregarFavorito, quitarFavorito } = useContext(DatosContext);
+
     const { id } = useParams();
-    //me trae con id y rentable
     const { pelicula, cargando } = RunGetId(id);
+
     //form datos ahora tiene los datos de la peli
     const [formDatos, setFormDatos] = useState(pelicula);
+
     const [mensaje, setMensaje] = useState(null);
     const [editandoAhora, setEditandoAhora] = useState(false);
     const [peliActual, setPeliActual] = useState(null);
@@ -22,9 +26,11 @@ export default function Detalle() {
         este hook me devuelve la peli y la muestro acá
     */
     //useEffect renderiza si cambia "pelicula"
-    useEffect(()=>{
+    useEffect(() => {
         setPeliActual(pelicula);
-    },[pelicula]);
+
+    }, [pelicula,]);
+    const setFav = favoritos.some(fav => fav.id === pelicula?.id);
 
     async function editarPeli(dato) {
 
@@ -90,22 +96,32 @@ export default function Detalle() {
                 )}
 
                 <h1 className="titulo">Editar y Eliminar</h1>
-               
-                {peliActual ? (
 
-                     <div className="datoId">
-                        <h4>• ID {peliActual.id}</h4>
-                    
-                    <Formulario
-                        datoInicial={peliActual}
-                        onSubmit={editarPeli}
-                        funcionEliminar={eliminarfuncion}
-                        modo="editar"
-                        editando={editandoAhora}
-                    />
+                {peliActual ? (
+                    <div className="datos">
+                            <h4>• ID {peliActual.id}</h4>
+                        <div className="fueraForm">
+                            {pelicula && setFav ? (
+                                <div className="botones">
+                                    <button className="botonesAll" id="eliminar" type="button" onClick={() => quitarFavorito(pelicula.id)}>eliminar de favoritos</button>
+                                </div>
+                            ) : (
+                                <div className="botones">
+                                    <button className="botonesAll" id="guardar" type="button" onClick={() => agregarFavorito(pelicula)}>agregar a favoritos</button>
+                                </div>
+                            )}
+                        </div>
+
+                        <Formulario
+                            datoInicial={peliActual}
+                            onSubmit={editarPeli}
+                            funcionEliminar={eliminarfuncion}
+                            modo="editar"
+                            editando={editandoAhora}
+                        />
                     </div>
-                ):(
-                     <h3>sin datos</h3>
+                ) : (
+                    <h3>sin datos</h3>
                 )}
             </section>
         </>
