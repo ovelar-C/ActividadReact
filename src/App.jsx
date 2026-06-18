@@ -32,15 +32,15 @@ function App() {
         <Route path='/login' element={<Login />} />
 
         <Route element={<Layout />}>
+
           <Route element={<RutaPrivada />}>
             <Route index element={<Home />} />
             <Route path='editar/:id' element={<Detalle />} />
-            <Route path='favoritos' element={<MiLista />} />
           </Route>
 
-
-        <Route path='listado' element={<Listado />} />
-        <Route path='*' element={<h1>error</h1>} />
+          <Route path='favoritos' element={<MiLista />} />
+          <Route path='listado' element={<Listado />} />
+          {/*<Route path='*' element={<h1>error</h1>} />*/}
         </Route>
 
       </Routes>

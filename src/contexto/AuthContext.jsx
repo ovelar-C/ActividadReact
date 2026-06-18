@@ -1,29 +1,33 @@
 import { createContext, useState } from "react"
-import {useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 
 export const DatosContextAuth = createContext();
 
+export default function AuthProvider({ children }) {
+    const [datosUser, setDatosUser] = useState(JSON.parse(localStorage.getItem("usuario")) || null);
+    const navigate = useNavigate();
 
-export default function AuthProvider({children}){
-const [usuario, setUsuario] = useState(JSON.parse(localStorage.getItem("usuario")) || null);
-const navigate = useNavigate();
-
-function login(usuario,password){
-    if(usuario === "admin" && password === "1234"){
-        localStorage.setItem("usuario", JSON.stringify(usuario))
-        setUsuario(usuario);
+    function autorizacion(usuario, password) {
+        const nuevosDatos = {
+            name : usuario,
+            password : password,
+            rol : usuario === "admin" && password === "1234"
+                ? "admin"
+                : "lector"
+        };
+        setDatosUser(nuevosDatos);
+        localStorage.setItem("usuario", JSON.stringify(nuevosDatos));
         navigate('/listado');
     }
-}
 
-function logout(){
-    setUsuario(null);
-    localStorage.removeItem("usuario");
-}
-    return(
+
+    function logout() {
+        setDatosUser(null)
+        localStorage.removeItem("usuario");
+    }
+    return (
         <>
-            <DatosContextAuth.Provider value={{usuario,login,logout}}>
+            <DatosContextAuth.Provider value={{ datosUser, autorizacion, logout }}>
                 {children}
             </DatosContextAuth.Provider>
         </>

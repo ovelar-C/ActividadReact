@@ -24,7 +24,9 @@
 .listado li span{
     font-family: monospace;
     font-size: 0.9rem;
+    
 }
+
 .listadoDatos li a {
     margin: 1rem;
     text-decoration: none;
